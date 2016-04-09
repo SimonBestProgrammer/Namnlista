@@ -1,5 +1,5 @@
 //sort_random.h
-//Funktionsprototyper för att sortera listan.
+//Funktionsprototyper fÃ¶r att sortera listan.
 //Simon
 //2015-12-09
 //--------------------------------------------------
@@ -20,3 +20,4 @@
 	vector <Person> random_list(vector <Person> v);
 
 #endif
+

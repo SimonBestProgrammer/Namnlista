@@ -1,5 +1,5 @@
 //print_meny_list.h
-//Funktionsprototyper för utskrift av meny och listan
+//Funktionsprototyper fÃ¶r utskrift av meny och listan
 //Simon
 //2015-12-09
 //--------------------------------------------------
@@ -17,3 +17,4 @@
 	void print_list(vector <Person> v);
 
 #endif
+

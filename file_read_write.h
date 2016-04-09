@@ -1,5 +1,5 @@
 //file_read_write.h
-//Funktionsprototyper för att läsa och skriva till fil.
+//Funktionsprototyper fÃ¶r att lÃ¤sa och skriva till fil.
 //Simon
 //2015-12-09
 //--------------------------------------------------
@@ -20,3 +20,4 @@
 	string decrypt(string str, int key);
 
 #endif
+

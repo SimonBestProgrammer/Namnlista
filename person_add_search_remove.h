@@ -1,5 +1,5 @@
 //person_add_search_remove.h
-//Funktionsprototyper för att lägga till, söka och ta bort person i listan. Även några extra funktioner finns här.
+//Funktionsprototyper fÃ¶r att lÃ¤gga till, sÃ¶ka och ta bort person i listan. Ã„ven nÃ¥gra extra funktioner finns hÃ¤r.
 //Simon
 //2015-12-09
 //--------------------------------------------------
@@ -25,3 +25,4 @@
 	vector <Person> remove_person(vector <Person> v);
 
 #endif
+

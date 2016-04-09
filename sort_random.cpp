@@ -1,5 +1,5 @@
 //sort_random.cpp
-//Funktionsdefinitioner för att sortera listan.
+//Funktionsdefinitioner fÃ¶r att sortera listan.
 //Simon
 //2015-12-09
 //--------------------------------------------------
@@ -12,9 +12,9 @@
 //--------------------------------------------------
 //sort_list
 //--------------------------------------------------
-// Uppgift: Sorterar listan på namn, signatur eller längd
-// Indata : Vektor som innehåller namnlistan, enum hur sorteringen skall gå till
-// Utdata : Returnerar en vektor med namlistan som är sorterad
+// Uppgift: Sorterar listan pÃ¥ namn, signatur eller lÃ¤ngd
+// Indata : Vektor som innehÃ¥ller namnlistan, enum hur sorteringen skall gÃ¥ till
+// Utdata : Returnerar en vektor med namlistan som Ã¤r sorterad
 //--------------------------------------------------
 vector <Person> sort_list(vector <Person> v, enum sort_choice sort_val)
 { 
@@ -39,11 +39,11 @@ vector <Person> sort_list(vector <Person> v, enum sort_choice sort_val)
 //--------------------------------------------------
 //name_sort
 //--------------------------------------------------
-// Uppgift: Göra en jämförelse på två namn
+// Uppgift: GÃ¶ra en jÃ¤mfÃ¶relse pÃ¥ tvÃ¥ namn
 // Indata : Strukt Person med ena namnet, strukt Person med andra namnet
-// Utdata : Returnerar om jämförelsen är sann eller ej
+// Utdata : Returnerar om jÃ¤mfÃ¶relsen Ã¤r sann eller ej
 //--------------------------------------------------
-bool name_sort(const Person& a, const Person& b)		//Sorterar på namn
+bool name_sort(const Person& a, const Person& b)	//Sorterar pÃ¥ namn
 {
 	string name_a, name_b;	
 	name_a = to_germaner(a.lastName) + to_germaner(a.firstName);
@@ -55,11 +55,11 @@ bool name_sort(const Person& a, const Person& b)		//Sorterar på namn
 //--------------------------------------------------
 //sign_sort
 //--------------------------------------------------
-// Uppgift: Göra en jämförelse på två signatur
+// Uppgift: GÃ¶ra en jÃ¤mfÃ¶relse pÃ¥ tvÃ¥ signatur
 // Indata : Strukt Person med ena signaturen, strukt Person med andra signaturen
-// Utdata : Returnerar om jämförelsen är sann eller ej
+// Utdata : Returnerar om jÃ¤mfÃ¶relsen Ã¤r sann eller ej
 //--------------------------------------------------
-bool sign_sort(const Person& a, const Person& b)		//Sorterar på signatur
+bool sign_sort(const Person& a, const Person& b)	//Sorterar pÃ¥ signatur
 {
 	return a.sign < b.sign;
 }
@@ -67,11 +67,11 @@ bool sign_sort(const Person& a, const Person& b)		//Sorterar på signatur
 //--------------------------------------------------
 //length_sort
 //--------------------------------------------------
-// Uppgift: Göra en jämförelse på två längder
-// Indata : Strukt Person med ena längden, strukt Person med andra längden
-// Utdata : Returnerar om jämförelsen är sann eller ej
+// Uppgift: GÃ¶ra en jÃ¤mfÃ¶relse pÃ¥ tvÃ¥ lÃ¤ngder
+// Indata : Strukt Person med ena lÃ¤ngden, strukt Person med andra lÃ¤ngden
+// Utdata : Returnerar om jÃ¤mfÃ¶relsen Ã¤r sann eller ej
 //--------------------------------------------------
-bool length_sort(const Person& a, const Person& b)		//Sorterar på längd
+bool length_sort(const Person& a, const Person& b)	//Sorterar pÃ¥ lÃ¤ngd
 {
 	return a.length > b.length;
 }
@@ -80,7 +80,7 @@ bool length_sort(const Person& a, const Person& b)		//Sorterar på längd
 //random_list
 //--------------------------------------------------
 // Uppgift: Slumpa ordningen av listan
-// Indata : Vektor som innehåller namnlistan
+// Indata : Vektor som innehÃ¥ller namnlistan
 // Utdata : Returnerar en vektor med namlistan som har slumpad ordning
 //--------------------------------------------------
 vector <Person> random_list(vector <Person> v)
@@ -88,3 +88,4 @@ vector <Person> random_list(vector <Person> v)
 	random_shuffle(v.begin(), v.end());
 	return v;
 }
+

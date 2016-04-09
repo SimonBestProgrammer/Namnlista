@@ -1,5 +1,5 @@
 //person_add_search_remove.cpp
-//Funktionsdefinitioner för att lägga till, söka och ta bort person i listan. Även några extra funktioner finns här.
+//Funktionsdefinitioner fÃ¶r att lÃ¤gga till, sÃ¶ka och ta bort person i listan. Ã„ven nÃ¥gra extra funktioner finns hÃ¤r.
 //Simon
 //2015-12-09
 //--------------------------------------------------
@@ -12,32 +12,32 @@
 //--------------------------------------------------
 //add_person
 //--------------------------------------------------
-// Uppgift: Lägga till en person på listan
-// Indata : Vektor som innehåller namnlistan
+// Uppgift: LÃ¤gga till en person pÃ¥ listan
+// Indata : Vektor som innehÃ¥ller namnlistan
 // Utdata : Returnerar en vektor med namlistan med ett namn tillagt
 //--------------------------------------------------
 vector <Person> add_person(vector <Person> v)
 {
-	Person tmpv;									//Temporär strukt för att spara undan persondata
+	Person tmpv;					//TemporÃ¤r strukt fÃ¶r att spara undan persondata
 	bool unique = false, cancel = false;
 	int alt = 0;
 	
-	//Kör loopen så länge personen INTE är unik, förusatt att användaren inte avbryter inmatningen
+	//KÃ¶r loopen sÃ¥ lÃ¤nge personen INTE Ã¤r unik, fÃ¶rusatt att anvÃ¤ndaren inte avbryter inmatningen
 	while (!unique)
 	{
 		unique = true;
-		cout << "F\x94rnamn: ";						//Läser in personen
+		cout << "F\x94rnamn: ";			//LÃ¤ser in personen
 		getline(cin, tmpv.firstName);
 		cout << "Efternamn: ";
 		getline(cin, tmpv.lastName);
 		cout << "L\x84ngd: ";
 		cin >> tmpv.length;
-		cin.get();									//Tar bort ENTER
+		cin.get();				//Tar bort ENTER
 
-		tmpv.length = round(tmpv.length);			//Rundar av till två decimaler
+		tmpv.length = round(tmpv.length);	//Rundar av till tvÃ¥ decimaler
 
 
-		//Kolla om personen är unik
+		//Kolla om personen Ã¤r unik
 		for (auto idx : v)
 		{
 			if (to_germaner(idx.firstName) == to_germaner(tmpv.firstName) && to_germaner(idx.lastName) == to_germaner(tmpv.lastName) && idx.length == tmpv.length)
@@ -49,7 +49,7 @@ vector <Person> add_person(vector <Person> v)
 					cout << "1. Skriv in personen igen" << endl;
 					cout << "2. Avbryt inmatningen" << endl;
 					cin >> alt;
-					cin.get();							//Rensar bort ENTER
+					cin.get();	//Rensar bort ENTER
 				} while (alt != 1 && alt != 2);
 
 				if (alt == 1)
@@ -66,19 +66,19 @@ vector <Person> add_person(vector <Person> v)
 	}
 
 
-	//Om personen är unik lägger till löpnummer
+	//Om personen Ã¤r unik lÃ¤gger till lÃ¶pnummer
 	if (unique && !cancel)
 	{
 
 		tmpv.sign = generate_sign(tmpv.firstName, tmpv.lastName);
 
-		//Lägger till ett löpnummer
+		//LÃ¤gger till ett lÃ¶pnummer
 		int leap_no_int = 1;
-		tmpv.sign = add_leap_no(tmpv.sign, leap_no_int); //Lägger till löpnummer
+		tmpv.sign = add_leap_no(tmpv.sign, leap_no_int); //LÃ¤gger till lÃ¶pnummer
 
 		string new_sign = tmpv.sign;
 
-		//Kollar om signaturen redan finns annars ändrar löpnummret
+		//Kollar om signaturen redan finns annars Ã¤ndrar lÃ¶pnummret
 		bool found = true;
 		while (found)
 		{
@@ -86,17 +86,17 @@ vector <Person> add_person(vector <Person> v)
 				return item.sign == new_sign;
 			};
 
-			found = (find_if(v.begin(), v.end(), pred) != v.end());	//Söker med signaturen
-			if (found)									//Om signaturen redan finns läggs ett nytt löpnummer
+			found = (find_if(v.begin(), v.end(), pred) != v.end());	//SÃ¶ker med signaturen
+			if (found)			//Om signaturen redan finns lÃ¤ggs ett nytt lÃ¶pnummer
 			{
 				leap_no_int++;
-				tmpv.sign = add_leap_no(tmpv.sign, leap_no_int); //Lägger till ett annat löpnummer
+				tmpv.sign = add_leap_no(tmpv.sign, leap_no_int); //LÃ¤gger till ett annat lÃ¶pnummer
 				new_sign = tmpv.sign;
 			}
 		}
 
 	
-		v.push_back(tmpv);								//Lägg in personen i vectorn
+		v.push_back(tmpv);			//LÃ¤gg in personen i vectorn
 	}
 	cout << endl;
 
@@ -107,44 +107,44 @@ vector <Person> add_person(vector <Person> v)
 //--------------------------------------------------
 //generate_sign
 //--------------------------------------------------
-// Uppgift: Generera en signatur för personen
-// Indata : string med förnamn och string med efternamn
+// Uppgift: Generera en signatur fÃ¶r personen
+// Indata : string med fÃ¶rnamn och string med efternamn
 // Utdata : string med signaturen
 //--------------------------------------------------
 string generate_sign(string firstName, string lastName)
 {
 	string first_germ, last_germ, sign;
-	first_germ = to_germaner(firstName);			//Namn till germaner
+	first_germ = to_germaner(firstName);		//Namn till germaner
 	last_germ = to_germaner(lastName);
 
-	if (first_germ.size() > 2)						//Namn med minst 3 bokstäver
+	if (first_germ.size() > 2)			//Namn med minst 3 bokstÃ¤ver
 	{
 		first_germ = first_germ.substr(0, 3);
 	}
-	else if (first_germ.size() == 2)				//Namn med 2 bokstäver lägger till ett x
+	else if (first_germ.size() == 2)		//Namn med 2 bokstÃ¤ver lÃ¤gger till ett x
 	{
 		first_germ = first_germ.append("x");
 	}
-	else if (first_germ.size() == 1)				//Namn med 1 bokstäver lägger till två x
+	else if (first_germ.size() == 1)		//Namn med 1 bokstÃ¤ver lÃ¤gger till tvÃ¥ x
 	{
 		first_germ = first_germ.append("xx");
 	}
 
 
-	if (last_germ.size() > 2)						//Namn med minst 3 bokstäver
+	if (last_germ.size() > 2)			//Namn med minst 3 bokstÃ¤ver
 	{
 		last_germ = last_germ.substr(0, 3);
 	}
-	else if (last_germ.size() == 2)					//Namn med 2 bokstäver lägger till ett x
+	else if (last_germ.size() == 2)			//Namn med 2 bokstÃ¤ver lÃ¤gger till ett x
 	{
 		last_germ = last_germ.append("x");
 	}
-	else if (last_germ.size() == 1)					//Namn med 1 bokstäver lägger till två x
+	else if (last_germ.size() == 1)			//Namn med 1 bokstÃ¤ver lÃ¤gger till tvÃ¥ x
 	{
 		last_germ = last_germ.append("xx");
 	}
 
-	sign = first_germ.append(last_germ);			//Sättersamman signaturen
+	sign = first_germ.append(last_germ);		//SÃ¤ttersamman signaturen
 
 	return sign;
 }
@@ -155,7 +155,7 @@ string generate_sign(string firstName, string lastName)
 //--------------------------------------------------
 // Uppgift: Omvandlar text till germaner
 // Indata : string med text
-// Utdata : string med samma text som skickades in men som bara innehåller germaner
+// Utdata : string med samma text som skickades in men som bara innehÃ¥ller germaner
 //--------------------------------------------------
 string to_germaner(string name)
 {
@@ -175,17 +175,17 @@ string to_germaner(string name)
 //--------------------------------------------------
 //add_leap_no
 //--------------------------------------------------
-// Uppgift: Lägga till ett löpnummet till en sträng
-// Indata : string som skall ha ett löpnummer, int med själva löpnummret
-// Utdata : string med text och löpnummer
+// Uppgift: LÃ¤gga till ett lÃ¶pnummet till en strÃ¤ng
+// Indata : string som skall ha ett lÃ¶pnummer, int med sjÃ¤lva lÃ¶pnummret
+// Utdata : string med text och lÃ¶pnummer
 //--------------------------------------------------
 string add_leap_no(string s, int leap_no_int)
 {
-	ostringstream oss;								//Skapa ett oss-objekt
-	oss << leap_no_int;								//Konvertera från tal till sträng
-	string leap_no = oss.str();						//Kopiera oss-bufferten till leap_no
+	ostringstream oss;				//Skapa ett oss-objekt
+	oss << leap_no_int;				//Konvertera frÃ¥n tal till strÃ¤ng
+	string leap_no = oss.str();			//Kopiera oss-bufferten till leap_no
 	
-	if (leap_no_int < 10)							//Lägger till "0" om talet är mellan 1 och 9
+	if (leap_no_int < 10)				//LÃ¤gger till "0" om talet Ã¤r mellan 1 och 9
 	{
 		if (s.size() < 7)
 		{
@@ -198,7 +198,7 @@ string add_leap_no(string s, int leap_no_int)
 			s.replace(7, 8, leap_no);
 		}
 	}
-	else											//Lägger till löpnummret om det är större eller lika med 10
+	else						//LÃ¤gger till lÃ¶pnummret om det Ã¤r stÃ¶rre eller lika med 10
 	{
 		s.replace(6, 8, leap_no);
 	}
@@ -209,9 +209,9 @@ string add_leap_no(string s, int leap_no_int)
 //--------------------------------------------------
 //round
 //--------------------------------------------------
-// Uppgift: Avrundar längden till två decimaler
+// Uppgift: Avrundar lÃ¤ngden till tvÃ¥ decimaler
 // Indata : double som skall avrundas
-// Utdata : double som är avrundad
+// Utdata : double som Ã¤r avrundad
 //--------------------------------------------------
 double round(double value)
 {
@@ -222,8 +222,8 @@ double round(double value)
 //--------------------------------------------------
 //search_person
 //--------------------------------------------------
-// Uppgift: Sök efter en person på listan
-// Indata : Vektor som innehåller namnlistan
+// Uppgift: SÃ¶k efter en person pÃ¥ listan
+// Indata : Vektor som innehÃ¥ller namnlistan
 // Utdata : Inget
 //--------------------------------------------------
 void search_person(vector <Person> v)
@@ -231,17 +231,17 @@ void search_person(vector <Person> v)
 	//Daklarerar variabler
 	string search_sign;
 
-	//Skriver in sökt person
+	//Skriver in sÃ¶kt person
 	cout << "S\x94k efter en person i listan:" << endl;
 	cout << "Signatur: ";
 	getline(cin, search_sign);
 	
-	//Söker
+	//SÃ¶ker
 	auto pred = [search_sign](const Person & item) { //Plockar ut sign ur struct
 		return item.sign == search_sign;
 	};
 
-	auto it = find_if(v.begin(), v.end(), pred);	//Söker med signaturen
+	auto it = find_if(v.begin(), v.end(), pred);	//SÃ¶ker med signaturen
 	bool found = (it != v.end());
 
 	if (found)
@@ -265,26 +265,26 @@ void search_person(vector <Person> v)
 //--------------------------------------------------
 //remove_person
 //--------------------------------------------------
-// Uppgift: Tar bort önskad person ur listan
-// Indata : Vektor som innehåller namnlistan
-// Utdata : Vektor som inte innehåller den borttagna personen
+// Uppgift: Tar bort Ã¶nskad person ur listan
+// Indata : Vektor som innehÃ¥ller namnlistan
+// Utdata : Vektor som inte innehÃ¥ller den borttagna personen
 //--------------------------------------------------
 vector <Person> remove_person(vector <Person> v)
 {
 	//Daklarerar variabler
 	string remove_sign;
 
-	//Skriver in sökt person
+	//Skriver in sÃ¶kt person
 	cout << "Skriv in person du vill ta bort fr\x86n listan:" << endl;
 	cout << "Signatur: ";
 	getline(cin, remove_sign);
 
-	//Söker
+	//SÃ¶ker
 	auto pred = [remove_sign](const Person & item) { //Plockar ut sign ur struct
 		return item.sign == remove_sign;
 	};
 	
-	auto it = find_if(v.begin(), v.end(), pred); //Söker med signaturen och raderar om personen finns i listan
+	auto it = find_if(v.begin(), v.end(), pred); //SÃ¶ker med signaturen och raderar om personen finns i listan
 	bool found = (it != v.end());
 	
 
@@ -301,10 +301,4 @@ vector <Person> remove_person(vector <Person> v)
 
 	return v;
 }
-
-
-
-
-
-
 
